@@ -1,10 +1,15 @@
 import fs from "fs/promises";
-let puzzleInput = await fs.readFile("./puzzleInput.txt", "utf-8");
+import path from "path";
+import { fileURLToPath } from "url";
 
-puzzleInput = puzzleInput.replace(/\r\n/g, "\n"); // normalize
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const filePath = path.join(__dirname, "puzzleInput.txt");
+let puzzleInput = await fs.readFile(filePath, "utf-8");
 
-function findFreshIngredients(puzzleInput) {
-  let parts = puzzleInput.split(/\n\s*\n/).map((p) => p.trim());
+let lines = puzzleInput.replace(/\r\n/g, "\n"); // normalize
+
+export function solve(arr = lines) {
+  let parts = arr.split(/\n\s*\n/).map((p) => p.trim());
 
   let ranges = parts[0].split("\n").map((p) => p.trim());
   let ingredients = parts[1].split("\n").map((p) => p.trim());
@@ -24,7 +29,5 @@ function findFreshIngredients(puzzleInput) {
       }
     }
   }
-  console.log(count);
+  return count;
 }
-
-findFreshIngredients(puzzleInput);
