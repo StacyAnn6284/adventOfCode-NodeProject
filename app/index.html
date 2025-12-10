@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Advent of Code 2025</title>
+  </head>
+  <body>
+    <h1>Advent of Code 2025 Results</h1>
+    <select id="daySelector">
+      <option value="1">Day 1</option>
+      <option value="2">Day 2</option>
+      <!-- Add more days as needed -->
+    </select>
+    <button onclick="loadResult()">Get Result</button>
+    <p id="output"></p>
+
+    <script>
+      async function loadResult() {
+        console.log("Loading result...");
+        const day = document.getElementById("daySelector").value;
+        const res = await fetch(`/api/day/${day}`);
+        const data = await res.json();
+        document.getElementById("output").textContent =
+          data.result || data.error;
+      }
+    </script>
+  </body>
+</html>

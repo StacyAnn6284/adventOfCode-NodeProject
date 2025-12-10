@@ -1,14 +1,20 @@
 import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const fileContents = await fs.readFile("./numbers.txt", "utf-8");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const filePath = path.join(__dirname, "numbers.txt");
+const fileContents = await fs.readFile(filePath, "utf-8");
 const lines = fileContents.trim().split("\n");
 
-function badElvesday1(numbers) {
+export function solve(numbers) {
+  const input = numbers ?? lines;
   let startingPoint = 50;
   let zeroCount = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    let RorL = numbers[i].charAt(0);
-    let numberPortion = Number(numbers[i].slice(1));
+  for (let i = 0; i < input.length; i++) {
+    let RorL = input[i].charAt(0);
+    let numberPortion = Number(input[i].slice(1));
 
     if (RorL === "R") {
       startingPoint += numberPortion;
@@ -20,7 +26,6 @@ function badElvesday1(numbers) {
       zeroCount += 1;
     }
   }
-  console.log(zeroCount);
+  let result = zeroCount;
+  return result;
 }
-
-badElvesday1(lines);
