@@ -1,5 +1,10 @@
 import fs from "fs/promises";
-const fileContents = await fs.readFile("./numbers.txt", "utf-8");
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const filePath = path.join(__dirname, "numbers.txt");
+const fileContents = await fs.readFile(filePath, "utf-8");
 const battBanks = fileContents.trim().split("\n");
 
 function findHighestDigit(arr, startingIndex, endingIndex) {
@@ -18,11 +23,11 @@ function findHighestDigit(arr, startingIndex, endingIndex) {
   };
 }
 
-function findHighest(battBanks) {
+export function solve(arr = battBanks) {
   let joltage = 0;
 
-  for (let i = 0; i < battBanks.length; i++) {
-    let numtoArr = battBanks[i]
+  for (let i = 0; i < arr.length; i++) {
+    let numtoArr = arr[i]
       .split("")
       .map((ch) => parseInt(ch, 10))
       .filter((n) => !isNaN(n));
@@ -41,7 +46,5 @@ function findHighest(battBanks) {
     let batteryNum = parseInt(batteryNumasArr.join(""), 10);
     joltage += batteryNum;
   }
-  console.log("final joltage: ", joltage);
+  return joltage;
 }
-
-findHighest(battBanks);

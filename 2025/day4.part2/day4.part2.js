@@ -1,5 +1,10 @@
 import fs from "fs/promises";
-const paperRolls = await fs.readFile("./input.txt", "utf-8");
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const filePath = path.join(__dirname, "input.txt");
+const paperRolls = await fs.readFile(filePath, "utf-8");
 
 let grid = paperRolls.split("\n").map((line) => line.split(""));
 let rollCount = 0;
@@ -86,11 +91,12 @@ function badElves4(grid) {
   };
 }
 
-while (repeat) {
-  let recursive = badElves4(grid);
-  grid = recursive.cleanedGrid;
-  repeat = recursive.repeat;
-  rollCount = recursive.rollCount;
+export function solve() {
+  while (repeat) {
+    let recursive = badElves4(grid);
+    grid = recursive.cleanedGrid;
+    repeat = recursive.repeat;
+    rollCount = recursive.rollCount;
+  }
+  return rollCount;
 }
-
-console.log(rollCount);

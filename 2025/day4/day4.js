@@ -1,7 +1,12 @@
 import fs from "fs/promises";
-const paperRolls = await fs.readFile("./input.txt", "utf-8");
+import path from "path";
+import { fileURLToPath } from "url";
 
-function badElves4(grid) {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const filePath = path.join(__dirname, "input.txt");
+const paperRolls = await fs.readFile(filePath, "utf-8");
+
+export function solve(grid = paperRolls.split("\n")) {
   let rollCount = 0;
   for (let row = 0; row < grid.length; row++) {
     for (let column = 0; column < grid[row].length; column++) {
@@ -46,8 +51,5 @@ function badElves4(grid) {
       }
     }
   }
-  console.log(rollCount);
   return rollCount;
 }
-
-badElves4(paperRolls.split("\n"));

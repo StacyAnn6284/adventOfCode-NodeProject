@@ -34,7 +34,7 @@ let myInput = [
   "408-1000",
 ];
 
-function badElfday2(idsToCheck) {
+export function solve(idsToCheck = myInput) {
   let fullArrayofIds = [];
   let finalNumber = 0;
   for (let i = 0; i < idsToCheck.length; i++) {
@@ -60,7 +60,5 @@ function badElfday2(idsToCheck) {
       finalNumber += numberToTest;
     }
   }
-  console.log(finalNumber);
+  return finalNumber;
 }
-
-badElfday2(myInput);
