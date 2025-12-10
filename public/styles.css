@@ -1,0 +1,65 @@
+body {
+  background: url("./media/snowmen-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #031a21;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+}
+h1 {
+  padding: 1rem;
+}
+
+select {
+  appearance: none;
+}
+
+.container {
+  background: rgba(228, 230, 230, 0.9);
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: bold;
+  color: #4e1600;
+  padding: 40px;
+  box-shadow: inset #a32e01 0 0 0 8px, inset #4e1600 0 0 0 15px,
+    inset #f12d33 0 0 0 24px, inset #c9cccc 0 0 0 26px, inset #a32e01 0 0 0 32px,
+    inset #4e1600 0 0 0 34px;
+  text-shadow: 3px 3px 1px #a1a3a3;
+}
+
+.result {
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.results-label {
+  margin-bottom: 1rem;
+}
+
+.dropdown {
+  background-color: #a32e01;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100%;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
